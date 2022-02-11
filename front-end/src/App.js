@@ -1,7 +1,8 @@
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 import { useEffect, useState } from "react";
-
+import TodoItem from "./components/TodoItem";
+import AddTodo from "./components/AddTodo";
 import './App.css';
 
 const GET_TODOS = gql`
@@ -13,131 +14,11 @@ const GET_TODOS = gql`
     }
   }
 `
-const ADD_TODO = gql`
-  mutation addTodo($description: String!) {
-    addTodo(description: $description)
-  }
-`;
-
-const UPDATE_TODO = gql`
-  mutation updateTodo($description: String!, $isFinished: Boolean!, $id: Int!) {
-    updateTodo(description: $description, , isFinished: $isFinished, id: $id)
-  }
-`;
-
-const DELETE_TODO = gql`
-  mutation deleteTodo($id: Int!) {
-    deleteTodo(id: $id)
-  }
-`;
 
 const MUTATE_TYPE = {
   ADD: 'ADD',
   UPDATE: 'UPDATE',
   DELETE: 'DELETE'
-}
-
-
-const Todo = ({ todo, onItemChange }) => {
-  const { id, description, isFinished } = todo
-
-  const [updateTodo, { loading, error }] = useMutation(UPDATE_TODO, {
-    // refetchQueries: () => [{ query: GET_TODOS }]
-  });
-
-  const [deleteTodo, { }] = useMutation(DELETE_TODO, {
-    // refetchQueries: () => [{ query: GET_TODOS }]
-  });
-
-  const handleToggleFinished = () => {
-    const toggledFinishedItem = {
-      description: description,
-      isFinished: !isFinished,
-      id: id
-    }
-
-    onItemChange(toggledFinishedItem, MUTATE_TYPE.UPDATE)
-
-    updateTodo({
-      variables: toggledFinishedItem
-    })
-  }
-
-  const handleDeleteTodoItem = () => {
-    const deleteItem = {
-      description: description,
-      isFinished: isFinished,
-      id: id
-    }
-
-    onItemChange(deleteItem, MUTATE_TYPE.DELETE)
-
-    deleteTodo({
-      variables: {
-        id: id
-      }
-    })
-  }
-
-  return (
-    <label className="card">
-      <div className={isFinished ? "taskContent linethrough" : "taskContent"}>{description}</div>
-      <div className="control">
-        <input
-          className="checkbox"
-          type="checkbox"
-          value={isFinished}
-          checked={isFinished}
-          onChange={handleToggleFinished}
-        />
-        <button
-          className="delete"
-          onClick={handleDeleteTodoItem}>X</button>
-      </div>
-    </label>
-  )
-}
-
-const AddTodo = ({ triggerAddTodo, lastItemId }) => {
-  let input;
-  const [addTodo, {data, loading, error }] = useMutation(ADD_TODO, {
-    // refetchQueries: () => [{ query: GET_TODOS }]
-  });
-
-  if (loading) return 'Submitting...';
-  if (error) {
-    console.log(error);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const addItem = {
-      description: input.value,
-      isFinished: false,
-      id: lastItemId + 1
-    }
-    triggerAddTodo(addItem)
-    addTodo({ variables: { description: input.value } });
-
-    input.value = '';
-  }
-
-  return (
-    <div>
-      <form
-        onSubmit={e => handleSubmit(e)}
-      >
-        <input
-          className="inputTask"
-          required={true}
-          ref={node => {
-            input = node;
-          }}
-        />
-        <button className="btn-submit" type="submit">Add Todo</button>
-      </form>
-    </div>
-  );
 }
 
 const TodoList = ({ data }) => {
@@ -151,7 +32,7 @@ const TodoList = ({ data }) => {
   }
 
   const todoItems = todos.map(todo => (
-    <Todo
+    <TodoItem
       className="todo-item"
       key={todo.id}
       todo={todo}
