@@ -1,0 +1,72 @@
+html {
+  background-color: #fff5e1;
+}
+
+.App {
+  text-align: center;
+  margin: 4rem auto;
+  padding: 2rem 3rem 3rem;
+  max-width: 500px;
+  background: #167e80;
+  color: #fff;
+  box-shadow: -20px -20px 0px 0px rgb(100 100 100 / 10%);
+}
+
+.todo-list {
+
+}
+
+ul {
+  padding: 0
+}
+
+.card {
+  display: flex;
+  padding: 1.1rem 3rem;
+  margin-bottom: .2rem;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.linethrough {
+  text-decoration: line-through;
+}
+
+.checkbox {
+  width: 22px;
+  cursor: pointer;
+  height: 22px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+}
+
+.delete {
+  padding: .1rem .4rem;
+  border: none;
+  background: white;
+  color: #167e80;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  padding: .2rem .4rem;
+  background: white;
+  color: #167e80;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+
