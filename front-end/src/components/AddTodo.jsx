@@ -40,12 +40,17 @@ const AddTodo = ({ triggerAddTodo, lastItemId }) => {
       >
         <input
           className="inputTask"
+          data-testid="input-task"
           required={true}
           ref={node => {
             input = node;
           }}
         />
-        <button className="btn-submit" type="submit">Add Todo</button>
+        <button
+          className="btn-submit"
+          type="submit"
+          data-testid="btn-submit"
+        >Add Todo</button>
       </form>
     </div>
   );
