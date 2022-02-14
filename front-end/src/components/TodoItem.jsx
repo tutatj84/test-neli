@@ -2,7 +2,7 @@
 import { useMutation } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 
-import './App.css';
+import '../App.css';
 
 const MUTATE_TYPE = {
   ADD: 'ADD',

@@ -22,13 +22,14 @@ const MUTATE_TYPE = {
 }
 
 const TodoList = ({ data }) => {
-  console.log(data);
-  const [todos, setTodos] = useState(data.todos)
+  const initTodos = [...data.todos].reverse()
+  const [todos, setTodos] = useState(initTodos)
 
-  console.log(todos);
+  const listLength = todos.length
+  const unFinishedTasks = todos.filter(task => !task.isFinished)
 
   const triggerAddTodo = (updateItem) => {
-    setTodos([...todos, updateItem])
+    setTodos([updateItem, ...todos])
   }
 
   const todoItems = todos.map(todo => (
@@ -56,6 +57,7 @@ const TodoList = ({ data }) => {
   ))
   return (
     <>
+      <p><i>We have <b>{listLength}</b> task{listLength < 2 ? '' : 's'}</i> and <b>{unFinishedTasks.length}</b> task{unFinishedTasks.length < 2 ? '' : 's'} to do!</p>
       <AddTodo triggerAddTodo={triggerAddTodo} lastItemId={todos[todos.length-1].id}/>
       <ul className="todo-list">
         {todoItems}
@@ -72,8 +74,6 @@ const App = () => {
     return <h1>Something went wrong!</h1>
   }
   if (loading) return <h1>Loading...</h1>
-
-  console.log(data);
 
   const todoList = loading ? null : <TodoList data={data} />
 

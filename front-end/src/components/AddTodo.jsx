@@ -1,7 +1,7 @@
 import React from "react";
 import gql from "graphql-tag"
 import { useMutation } from "@apollo/react-hooks"
-import './App.css';
+import '../App.css';
 
 const ADD_TODO = gql`
   mutation addTodo($description: String!) {
