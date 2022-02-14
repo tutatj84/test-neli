@@ -58,7 +58,8 @@ const TodoList = ({ data }) => {
   ))
   return (
     <>
-      <p><i>We have <b>{listLength}</b> task{listLength < 2 ? '' : 's'} and <b>{unFinishedTasks.length}</b> task{unFinishedTasks.length < 2 ? '' : 's'} to do!</i></p>
+      <p><i>We have <b>{listLength}</b> task{listLength < 2 ? '' : 's'}
+      and <b>{unFinishedTasks.length}</b> task{unFinishedTasks.length < 2 ? '' : 's'} to do!</i></p>
       <AddTodo triggerAddTodo={triggerAddTodo} lastItemId={todos[todos.length-1].id}/>
       <ul className="todo-list">
         {todoItems}
