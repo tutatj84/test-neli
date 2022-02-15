@@ -1,13 +1,13 @@
 
 import { useMutation } from "@apollo/react-hooks"
 import * as Queries from '../constant/queries'
-import { HandleItemChange, TodoItem, MUTATE_TYPE } from "../type";
+import { HandleItemChange, TodoItem as TodoItemType, MUTATE_TYPE } from "../type";
 import '../App.css';
 import { FC } from "react";
 
 interface TodoItemProps {
   className: string,
-  todo: TodoItem,
+  todo: TodoItemType,
   onItemChange: HandleItemChange
 }
 
@@ -25,7 +25,7 @@ const TodoItem:FC<TodoItemProps> = ({ todo, onItemChange }) => {
       id: id
     }
 
-    onItemChange(toggledFinishedItem, MUTATE_TYPE.ADD)
+    onItemChange(toggledFinishedItem, MUTATE_TYPE.UPDATE)
 
     updateTodo({
       variables: toggledFinishedItem
