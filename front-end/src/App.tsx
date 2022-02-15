@@ -2,25 +2,30 @@ import { useQuery } from "@apollo/react-hooks"
 import { useState } from "react";
 import TodoItem from "./components/TodoItem";
 import AddTodo from "./components/AddTodo";
+import { HandleItemChange, TodoItem as TodoItemType, MUTATE_TYPE } from "./type";
+
 import './App.css';
 import * as Queries from './constant/queries'
-const MUTATE_TYPE = {
-  ADD: 'ADD',
-  UPDATE: 'UPDATE',
-  DELETE: 'DELETE'
+import { FC } from "react";
+
+interface TodoListProps {
+  data: {
+    todos: TodoItemType[]
+  }
 }
-const TodoList = ({ data }) => {
+
+const TodoList: FC<TodoListProps> = ({ data }) => {
   const initTodos = [...data.todos].reverse()
-  const [todos, setTodos] = useState(initTodos)
+  const [todos, setTodos] = useState<TodoItemType[]>(initTodos)
 
   const listLength = todos.length
   const unFinishedTasks = todos.filter(task => !task.isFinished)
 
-  const triggerAddTodo = (updateItem) => {
+  const triggerAddTodo = (updateItem: TodoItemType) => {
     setTodos([updateItem, ...todos])
   }
 
-  const handleItemChange = (updateItem, mutateType) => {
+  const handleItemChange: HandleItemChange = (updateItem, mutateType) => {
     if (mutateType === MUTATE_TYPE.UPDATE) {
       const updatedTodo = todos.map(todoItem => {
         if (todoItem.id === updateItem.id) {
@@ -37,14 +42,14 @@ const TodoList = ({ data }) => {
 
   const todoItems = todos.map(todo => (
     <TodoItem
-      className="todo-item"
+      className= "todo-item"
       data-testid="task"
-      key={todo.id}
-      todo={todo}
-      onItemChange={handleItemChange}
+      key = { todo.id }
+      todo = { todo }
+      onItemChange = { handleItemChange }
     />
   ))
-  return (
+  return ((
     <>
       <p><i>
         We have <b>{listLength}</b> task{listLength < 2 ? '' : 's'}
@@ -55,7 +60,7 @@ const TodoList = ({ data }) => {
         {todoItems}
       </ul>
     </>
-  )
+  ))
 }
 
 const App = () => {

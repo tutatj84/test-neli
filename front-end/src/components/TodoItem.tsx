@@ -1,16 +1,17 @@
 
 import { useMutation } from "@apollo/react-hooks"
 import * as Queries from '../constant/queries'
-
+import { HandleItemChange, TodoItem, MUTATE_TYPE } from "../type";
 import '../App.css';
+import { FC } from "react";
 
-const MUTATE_TYPE = {
-  ADD: 'ADD',
-  UPDATE: 'UPDATE',
-  DELETE: 'DELETE'
+interface TodoItemProps {
+  className: string,
+  todo: TodoItem,
+  onItemChange: HandleItemChange
 }
 
-const TodoItem = ({ todo, onItemChange }) => {
+const TodoItem:FC<TodoItemProps> = ({ todo, onItemChange }) => {
   const { id, description, isFinished } = todo
 
   const [ updateTodo ] = useMutation(Queries.UPDATE_TODO);
@@ -24,7 +25,7 @@ const TodoItem = ({ todo, onItemChange }) => {
       id: id
     }
 
-    onItemChange(toggledFinishedItem, MUTATE_TYPE.UPDATE)
+    onItemChange(toggledFinishedItem, MUTATE_TYPE.ADD)
 
     updateTodo({
       variables: toggledFinishedItem
@@ -54,7 +55,6 @@ const TodoItem = ({ todo, onItemChange }) => {
         <input
           className="checkbox"
           type="checkbox"
-          value={isFinished}
           checked={isFinished}
           onChange={handleToggleFinished}
         />

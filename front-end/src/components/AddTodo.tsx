@@ -6,7 +6,7 @@ import { FC } from "react";
 import { TodoItem } from '../type'
 
 interface AddTodoProps {
-  triggerAddTodo: (updateItem: TodoItem) => {},
+  triggerAddTodo: (updateItem: TodoItem) => void,
   lastItemId: number
 }
 
