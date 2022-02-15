@@ -1,6 +1,6 @@
 
 import { useMutation } from "@apollo/react-hooks"
-import gql from "graphql-tag"
+import * as Queries from './constant/queries'
 
 import '../App.css';
 
@@ -10,28 +10,12 @@ const MUTATE_TYPE = {
   DELETE: 'DELETE'
 }
 
-const UPDATE_TODO = gql`
-  mutation updateTodo($description: String!, $isFinished: Boolean!, $id: Int!) {
-    updateTodo(description: $description, , isFinished: $isFinished, id: $id)
-  }
-`;
-
-const DELETE_TODO = gql`
-  mutation deleteTodo($id: Int!) {
-    deleteTodo(id: $id)
-  }
-`;
-
 const TodoItem = ({ todo, onItemChange }) => {
   const { id, description, isFinished } = todo
 
-  const [updateTodo, { loading, error }] = useMutation(UPDATE_TODO, {
-    // refetchQueries: () => [{ query: GET_TODOS }]
-  });
+  const [ updateTodo ] = useMutation(Queries.UPDATE_TODO);
 
-  const [deleteTodo, { }] = useMutation(DELETE_TODO, {
-    // refetchQueries: () => [{ query: GET_TODOS }]
-  });
+  const [ deleteTodo ] = useMutation(Queries.DELETE_TODO);
 
   const handleToggleFinished = () => {
     const toggledFinishedItem = {

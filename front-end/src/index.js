@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks';
+import * as Links from './constant/links'
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/'
+  uri: Links.SERVER_URI
 })
-
 
 ReactDOM.render(
   <React.StrictMode>
