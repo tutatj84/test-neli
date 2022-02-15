@@ -1,18 +1,25 @@
-import React from "react";
-import * as Queries from './constant/queries'
+import React, { FormEvent } from "react";
+import * as Queries from '../constant/queries'
 import { useMutation } from "@apollo/react-hooks"
 import '../App.css';
+import { FC } from "react";
+import { TodoItem } from '../type'
 
-const AddTodo = ({ triggerAddTodo, lastItemId }) => {
-  let input;
+interface AddTodoProps {
+  triggerAddTodo: (updateItem: TodoItem) => {},
+  lastItemId: number
+}
+
+const AddTodo:FC<AddTodoProps> = ({ triggerAddTodo, lastItemId }) => {
+  let input: HTMLInputElement;
   const [addTodo, {data, loading, error }] = useMutation(Queries.ADD_TODO);
 
-  if (loading) return 'Submitting...';
+  if (loading) console.log('loading');
   if (error) {
     console.log(error);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const addItem = {
       description: input.value,
@@ -35,7 +42,7 @@ const AddTodo = ({ triggerAddTodo, lastItemId }) => {
           data-testid="input-task"
           required={true}
           ref={node => {
-            input = node;
+            input = node!;
           }}
         />
         <button

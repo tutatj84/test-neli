@@ -1,6 +1,6 @@
 
 import { useMutation } from "@apollo/react-hooks"
-import * as Queries from './constant/queries'
+import * as Queries from '../constant/queries'
 
 import '../App.css';
 
