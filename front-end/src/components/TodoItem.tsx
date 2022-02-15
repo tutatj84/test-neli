@@ -54,6 +54,7 @@ const TodoItem:FC<TodoItemProps> = ({ todo, onItemChange }) => {
       <div className="control">
         <input
           className="checkbox"
+          data-testid="checkboxFinished"
           type="checkbox"
           checked={isFinished}
           onChange={handleToggleFinished}

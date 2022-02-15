@@ -51,7 +51,7 @@ const TodoList: FC<TodoListProps> = ({ data }) => {
   ))
   return ((
     <>
-      <p><i>
+      <p><i data-testid="status">
         We have <b>{listLength}</b> task{listLength < 2 ? '' : 's'}
         &nbsp;and <b>{unFinishedTasks.length}</b> task{unFinishedTasks.length < 2 ? '' : 's'} to do!
       </i></p>
