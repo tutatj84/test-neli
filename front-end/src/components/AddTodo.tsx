@@ -5,12 +5,12 @@ import '../App.css';
 import { FC } from "react";
 import { TodoItem } from '../type'
 
-interface AddTodoProps {
+interface IAddTodoProps {
   triggerAddTodo: (updateItem: TodoItem) => void,
   lastItemId: number
 }
 
-const AddTodo:FC<AddTodoProps> = ({ triggerAddTodo, lastItemId }) => {
+const AddTodo:FC<IAddTodoProps> = ({ triggerAddTodo, lastItemId }) => {
   let input: HTMLInputElement;
   const [addTodo, {data, loading, error }] = useMutation(Queries.ADD_TODO);
 

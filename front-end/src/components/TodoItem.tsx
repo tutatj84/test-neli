@@ -5,13 +5,13 @@ import { HandleItemChange, TodoItem as TodoItemType, MUTATE_TYPE } from "../type
 import '../App.css';
 import { FC } from "react";
 
-interface TodoItemProps {
+interface ITodoItemProps {
   className: string,
   todo: TodoItemType,
   onItemChange: HandleItemChange
 }
 
-const TodoItem:FC<TodoItemProps> = ({ todo, onItemChange }) => {
+const TodoItem:FC<ITodoItemProps> = ({ todo, onItemChange }) => {
   const { id, description, isFinished } = todo
 
   const [ updateTodo ] = useMutation(Queries.UPDATE_TODO);
