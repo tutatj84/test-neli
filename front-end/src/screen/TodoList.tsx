@@ -13,6 +13,7 @@ interface ITodoListProps {
 }
 
 const TodoList: FC<ITodoListProps> = ({ data }) => {
+  // sort data to see the newest first
   const initTodos = [...data.todos].reverse()
   const [todos, setTodos] = useState<TodoItemType[]>(initTodos)
 
@@ -23,7 +24,7 @@ const TodoList: FC<ITodoListProps> = ({ data }) => {
     setTodos([updateItem, ...todos])
   }
 
-  const handleItemChange: HandleItemChange = (updateItem, mutateType) => {
+  const onItemChange: HandleItemChange = (updateItem, mutateType) => {
     if (mutateType === MUTATE_TYPE.UPDATE) {
       const updatedTodo = todos.map(todoItem => {
         if (todoItem.id === updateItem.id) {
@@ -44,7 +45,7 @@ const TodoList: FC<ITodoListProps> = ({ data }) => {
       data-testid="task"
       key = { todo.id }
       todo = { todo }
-      onItemChange = { handleItemChange }
+      onItemChange = { onItemChange }
     />
   ))
   return (

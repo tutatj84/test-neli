@@ -19,7 +19,7 @@ const AddTodo:FC<IAddTodoProps> = ({ triggerAddTodo, lastItemId }) => {
     console.log(error);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const addItem = {
       description: input.value,
@@ -35,7 +35,7 @@ const AddTodo:FC<IAddTodoProps> = ({ triggerAddTodo, lastItemId }) => {
   return (
     <div>
       <form
-        onSubmit={e => handleSubmit(e)}
+        onSubmit={e => onSubmit(e)}
       >
         <input
           className="inputTask"

@@ -18,7 +18,7 @@ const TodoItem:FC<ITodoItemProps> = ({ todo, onItemChange }) => {
 
   const [ deleteTodo ] = useMutation(Queries.DELETE_TODO);
 
-  const handleToggleFinished = () => {
+  const onToggleFinished = () => {
     const toggledFinishedItem = {
       description: description,
       isFinished: !isFinished,
@@ -32,7 +32,7 @@ const TodoItem:FC<ITodoItemProps> = ({ todo, onItemChange }) => {
     })
   }
 
-  const handleDeleteTodoItem = () => {
+  const onDeleteTodoItem = () => {
     const deleteItem = {
       description: description,
       isFinished: isFinished,
@@ -57,11 +57,11 @@ const TodoItem:FC<ITodoItemProps> = ({ todo, onItemChange }) => {
           data-testid="checkboxFinished"
           type="checkbox"
           checked={isFinished}
-          onChange={handleToggleFinished}
+          onChange={onToggleFinished}
         />
         <button
           className="delete"
-          onClick={handleDeleteTodoItem}>X</button>
+          onClick={onDeleteTodoItem}>X</button>
       </div>
     </label>
   )
