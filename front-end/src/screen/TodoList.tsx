@@ -54,7 +54,7 @@ const TodoList: FC<ITodoListProps> = ({ data }) => {
         We have <b>{listLength}</b> task{listLength < 2 ? '' : 's'}
         &nbsp;and <b>{unFinishedTasks.length}</b> task{unFinishedTasks.length < 2 ? '' : 's'} to do!
       </i></p>
-      <AddTodo triggerAddTodo={triggerAddTodo} lastItemId={todos[todos.length-1].id}/>
+      <AddTodo triggerAddTodo={triggerAddTodo} lastItemId={todos[0].id}/>
       <ul className="todo-list">
         {todoItems}
       </ul>
