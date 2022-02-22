@@ -1,6 +1,9 @@
-# Test Nelisoftwares
+# Todo App
 
-Hello, thank you for applying to Nelisoftwares software engineer position. This quick test will check your knowledge in both front-end (ReactJS) and back-end (ExpressJS/ApolloServer/SQL). We will make a todos app to create, edit, delete and list todos in our React app with Apollo GraphQL + MySQL as back-end. Please read this entire README.md and let us know if you have any question.
+This is a demo app of me in Nelisorfwares. The main business of this project is to make an Todo app that users can arrange their work and status of current work or just to take note of their goal need to be done.
+Tech stack: Front-end (ReactJS) and back-end (ExpressJS/ApolloServer/SQL)
+
+You can follow the guide below to run Todo app. Have fun!!!
 
 # Pre-setup
 
@@ -30,30 +33,3 @@ Make sure you have NodeJS installed.
 ```
 cd front-end && npm i && npm start
 ```
-
-# Back-end work
-
-- Create a resolver to fetch one Todo (input: id, output: Todo)
-- Create a resolver to edit one Todo (input: id, description, isFinished, output: Todo)
-- Create a resolver to delete one Todo (input: id, output: String for success or failure)
-- Create a resolver to create one Todo (input: id, description, output: Todo)
-
-# Front-end work
-
-- Display the list of current todos
-- Be able to delete a todo from database
-- Be able to edit a todo from database
-- Be able to create a new todo from a description
-
-# Bonus (Optional)
-
-- Setup JS documentation
-- Setup unit test with Jest
-- Setup e2e test with Cypress
-- Nice UX
-- Beautiful Design
-
-# Deadline
-
-There are no deadlines, feel free to send back the project once you feel it's finished.
-Thank you for your time and hope to welcome soon at Nelisoftwares.
